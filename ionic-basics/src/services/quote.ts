@@ -4,6 +4,7 @@ export class QuotesService{
 
     addQuoteFavorite(quote:Quote){
         this.favoriteQuotes.push(quote)
+        console.log(this.favoriteQuotes)
     }
 
     removeQuoteFavorite(quote:Quote){

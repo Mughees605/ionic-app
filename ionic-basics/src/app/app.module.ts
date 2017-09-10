@@ -10,6 +10,8 @@ import { QuotesPage } from '../pages/quotes/quotes';
 import { QuotePage } from '../pages/quote/quote';
 import { TabsPage } from '../pages/tabs/tab';
 
+//services
+import { QuotesService } from '../services/quote'
 
 import { MyApp } from './app.component';
 
@@ -41,7 +43,8 @@ import { MyApp } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    QuotesService
   ]
 })
 export class AppModule { }
