@@ -19,8 +19,6 @@ export class LoginPage {
 
   constructor(private nav: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private auth: Auth) { }
 
-
-
   public login(form: NgForm) {
 
     const { email, password } = form.value;
