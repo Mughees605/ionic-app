@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Platform, MenuController } from 'ionic-angular';
-
-import { HomePage } from '../pages/home/home';
-
+import { LoginPage} from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,7 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
 
   // make HelloIonicPage the root (or first) page
-  rootPage = HomePage;
+  rootPage = LoginPage;
 
   constructor(
     public platform: Platform,

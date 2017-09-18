@@ -17,6 +17,12 @@ export class LoginPage {
 
   constructor(private nav: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private auth: Auth) { }
 
+    ionViewDidLoad(){
+      let user = localStorage.getItem('user')
+       if(user){
+         this.nav.setRoot(HomePage);
+       }
+    }
   public login(form: NgForm) {
 
     const { email, password } = form.value;
