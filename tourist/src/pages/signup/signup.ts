@@ -6,14 +6,6 @@ import { AuthData } from '../../providers/auth-data';
 import { EmailValidator } from '../../validators/email';
 import { TabsPage } from '../tabs/tabs'
 
-
-
-/**
- * Generated class for the Signup page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-signup',

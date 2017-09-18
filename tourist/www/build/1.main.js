@@ -1,13 +1,13 @@
 webpackJsonp([1],{
 
-/***/ 629:
+/***/ 627:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reset_password__ = __webpack_require__(143);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordModule", function() { return ResetPasswordModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal_autocomplete__ = __webpack_require__(81);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalAutocompletePageModule", function() { return ModalAutocompletePageModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16,23 +16,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
-var ResetPasswordModule = (function () {
-    function ResetPasswordModule() {
+var ModalAutocompletePageModule = (function () {
+    function ModalAutocompletePageModule() {
     }
-    return ResetPasswordModule;
+    return ModalAutocompletePageModule;
 }());
-ResetPasswordModule = __decorate([
+ModalAutocompletePageModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["a" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_1__reset_password__["a" /* ResetPassword */],
+            __WEBPACK_IMPORTED_MODULE_1__modal_autocomplete__["a" /* ModalAutocompletePage */],
         ],
+        imports: [],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_1__reset_password__["a" /* ResetPassword */]
+            __WEBPACK_IMPORTED_MODULE_1__modal_autocomplete__["a" /* ModalAutocompletePage */]
         ]
     })
-], ResetPasswordModule);
+], ModalAutocompletePageModule);
 
-//# sourceMappingURL=reset-password.module.js.map
+//# sourceMappingURL=modal-autocomplete.module.js.map
 
 /***/ })
 

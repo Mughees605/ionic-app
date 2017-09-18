@@ -19,13 +19,10 @@ export class HomePage implements OnInit {
     this.pages = [
       { title: 'Patient-form', component: PatientFormPage },
       { title: 'Patient-Search', component: PatientSearchPage },
+      { title: 'Patient List', component: DashboardPage}
     ];
   }
   rootPage = DashboardPage;
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
 
   ngOnInit() {
   }

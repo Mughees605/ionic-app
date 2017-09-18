@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { PatientFormPage } from '../pages/patient-form/patient-form';
 import { PatientSearchPage } from '../pages/patient-search/patient-search';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { PatientDetailPage } from '../pages/patient-detail/patient-detail'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,7 +39,8 @@ export const firebaseConfig = {
     HomePage,
     PatientFormPage,
     PatientSearchPage,
-    DashboardPage
+    DashboardPage,
+    PatientDetailPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ export const firebaseConfig = {
     RegistrationPage,
     DashboardPage,
     PatientSearchPage,
-    PatientFormPage
+    PatientFormPage,
+    PatientDetailPage
   ],
   providers: [
     StatusBar,

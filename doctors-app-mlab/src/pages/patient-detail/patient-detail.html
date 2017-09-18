@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>patient-detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="card-background-page">
+  <ion-card>
+    <img src="assets/web-user.jpg" />
+  </ion-card>
+  <ion-list>
+    <h2>Profile</h2>
+    <ion-item>
+      <ion-icon name='contact' item-left></ion-icon>
+      <span>Name</span>
+      <h2>{{patientDetail?.firstname}} {{patientDetail?.lastname}}</h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='medical' item-left></ion-icon>
+      <span>Disease</span>
+      <h2>{{patientDetail?.patientdis}}</h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='medkit' item-left></ion-icon>
+      <span>Medicine</span>
+      <h2>{{patientDetail?.patientmed}}</h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='cash' item-left></ion-icon>
+      <span>Cost</span>
+      <h2>{{patientDetail?.cost}}</h2>
+    </ion-item>
+    <ion-item>
+      <ion-icon name='calendar' item-left></ion-icon>
+      <span>Date</span>
+      <h2>{{patientDetail?.Date}}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

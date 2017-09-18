@@ -14,7 +14,6 @@ import { Login } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { ModalAutocompletePage } from '../pages/modal-autocomplete/modal-autocomplete';
 
-import {ResetPassword}from '../pages/reset-password/reset-password';
 import {Signup} from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -35,7 +34,6 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
     ModalAutocompletePage,
       TabsPage,
       Login,
-      ResetPassword,
       GoogleMapPage,
       Signup
   ],
@@ -53,7 +51,6 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
     ModalAutocompletePage,
       TabsPage,
       Login,
-      ResetPassword,
       GoogleMapPage,
       Signup
   ],

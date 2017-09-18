@@ -1,9 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { NavController, NavParams } from 'ionic-angular';
 import { PatientModel } from '../../model/patient.model';
 import { PatientProvider } from '../../providers/patient/patient.service';
-import { Auth } from '../../providers/auth/auth.service'
 @Component({
   selector: 'page-patient-form',
   templateUrl: 'patient-form.html',
@@ -13,24 +11,21 @@ export class PatientFormPage {
   @ViewChild('patientForm') form: NgForm
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
     public patientSer: PatientProvider,
   ) {
   }
 
-  
   savePatient(form: NgForm) {
     let user = localStorage.getItem('user');
     let { firstname, lastname, patientdis, patientmed, cost, Date } = form.value;
     let Patient = new PatientModel(firstname, lastname, patientdis, patientmed, cost, Date);
-    this.patientSer.addPatient(user,Patient).subscribe((res)=>{
-     if(res.status){
-       this.form.reset();
-     }
-     else{
+    this.patientSer.addPatient(user, Patient).subscribe((res) => {
+      if (res.status) {
+        this.form.reset();
+      }
+      else {
         alert(res.status)
-     }
+      }
     });
   }
 }

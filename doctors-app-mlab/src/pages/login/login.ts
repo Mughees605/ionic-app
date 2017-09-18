@@ -6,8 +6,6 @@ import { NavController, NavParams, Loading, AlertController, LoadingController }
 import { Login } from '../../model/login.model';
 import { Auth } from '../../providers/auth/auth.service';
 
-import { } from ''
-
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
