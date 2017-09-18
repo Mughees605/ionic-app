@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController, Nav, NavController } from 'ionic-angular';
+import { MenuController, Nav, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth/auth.service';
 import { LoginPage } from '../login/login';
 import { DashboardPage } from '../dashboard/dashboard';
 import { PatientFormPage } from '../patient-form/patient-form';
-import { PatientSearchPage } from '../patient-search/patient-search';
 
 @Component({
   selector: 'page-home',
@@ -13,12 +12,17 @@ import { PatientSearchPage } from '../patient-search/patient-search';
 export class HomePage implements OnInit {
   @ViewChild(Nav) nav: Nav;
   pages;
-
-  constructor(public navCtrl: NavController, public auth: Auth, public menu: MenuController) {
+  loading:Loading;
+  constructor(
+    public navCtrl: NavController, 
+    public auth: Auth, 
+    public menu: MenuController,
+    private loadingCtrl:LoadingController,
+    private alertCtrl:AlertController
+  ) {
 
     this.pages = [
       { title: 'Patient-form', component: PatientFormPage },
-      { title: 'Patient-Search', component: PatientSearchPage },
       { title: 'Patient List', component: DashboardPage}
     ];
   }
@@ -28,11 +32,36 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    this.showLoading();    
     this.auth.logout().subscribe((res) => {
       if (res.status && res.status == 200) {
         this.navCtrl.setRoot(LoginPage);
       }
+      else{
+        this.showError('No Internet Connection')
+      }
+    },(err)=>{
+      this.showError(err);
     })
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
+  }
+
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present(prompt);
   }
 
   openPage(page) {

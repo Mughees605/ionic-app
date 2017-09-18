@@ -9,7 +9,6 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { HomePage } from '../pages/home/home';
 import { PatientFormPage } from '../pages/patient-form/patient-form';
-import { PatientSearchPage } from '../pages/patient-search/patient-search';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { PatientDetailPage } from '../pages/patient-detail/patient-detail'
 
@@ -38,7 +37,6 @@ export const firebaseConfig = {
     RegistrationPage,
     HomePage,
     PatientFormPage,
-    PatientSearchPage,
     DashboardPage,
     PatientDetailPage
   ],
@@ -57,7 +55,6 @@ export const firebaseConfig = {
     LoginPage,
     RegistrationPage,
     DashboardPage,
-    PatientSearchPage,
     PatientFormPage,
     PatientDetailPage
   ],

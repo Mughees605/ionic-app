@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { HomePage } from '..//home/home'
 import { RegistrationPage } from '../registration/registration'
-import { NavController, NavParams, Loading, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, Loading, AlertController, LoadingController } from 'ionic-angular';
 import { Login } from '../../model/login.model';
 import { Auth } from '../../providers/auth/auth.service';
 
@@ -15,7 +15,11 @@ export class LoginPage {
   registrationPage = RegistrationPage;
   @ViewChild('f') form: NgForm;
 
-  constructor(private nav: NavController, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private auth: Auth) { }
+  constructor(
+    private nav: NavController, 
+    private alertCtrl: AlertController, 
+    private loadingCtrl: LoadingController, 
+    private auth: Auth) { }
 
     ionViewDidLoad(){
       let user = localStorage.getItem('user')
