@@ -10,6 +10,7 @@
 
 
 <ion-content padding>
+   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
     <ion-list>
     <button ion-item *ngFor='let patient of patients' [navPush]='patientDetail' [navParams]='patient'>
       <ion-avatar item-left>

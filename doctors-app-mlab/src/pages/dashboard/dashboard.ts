@@ -8,7 +8,8 @@ import { PatientDetailPage } from '../patient-detail/patient-detail';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage implements OnInit {
-  patients:Patient[];
+  searchTerm: string = '';
+  patients: Patient[];
   patientDetail = PatientDetailPage;
   constructor(private patientService: PatientProvider) {
   }
@@ -20,6 +21,10 @@ export class DashboardPage implements OnInit {
         this.patients = res.data;
       }
     })
+  }
+
+  setFilteredItems() {
+    this.patients = this.patientService.filterItems(this.searchTerm);
   }
 
 
