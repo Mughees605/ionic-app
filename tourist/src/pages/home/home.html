@@ -36,5 +36,8 @@
       <h3>Location geometry</h3>
       <p>{{ placedetails.lat }}, {{ placedetails.lng }}</p>
     </ion-item>
+    <button ion-button full outline (click)='showPhotosModal()' *ngIf='photos && photos.length > 0'>
+      Show Images
+    </button>
   </ion-list>
 </ion-content>

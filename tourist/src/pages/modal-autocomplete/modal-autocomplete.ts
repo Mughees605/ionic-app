@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
 declare var google: any;
-
-/**
- * Generated class for the ModalAutocompletePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-modal-autocomplete',

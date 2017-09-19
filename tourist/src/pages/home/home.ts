@@ -4,6 +4,7 @@ import { AuthData } from '../../providers/auth-data';
 import { LocationsProvider } from '../../providers/locations/locations'
 import { Login } from '../login/login';
 import { ModalAutocompletePage } from '../modal-autocomplete/modal-autocomplete';
+import { PhotosPage } from '../photos/photos';
 declare var google;
 @Component({
     selector: 'page-home',
@@ -19,6 +20,7 @@ export class HomePage implements OnInit {
     placeService: any;
     Destination:string = '';
     placedetails: any;
+    photos = [];
     constructor(public navCtrl: NavController, public modCtrl: ModalController, public authData: AuthData, private locService: LocationsProvider) {
 
     }
@@ -38,8 +40,7 @@ export class HomePage implements OnInit {
         this.map = new google.maps.Map(divMap, {
             center: point,
             zoom: 15,
-            disableDefaultUI: true,
-            draggable: false,
+            draggable: true,
             zoomControl: true
         });
 
@@ -63,6 +64,11 @@ export class HomePage implements OnInit {
         modal.present();
     }
 
+    showPhotosModal(){
+        let modal = this.modCtrl.create(PhotosPage,{photos:this.photos});
+        modal.present();
+    }
+
     getDetails(placeId: string) {
         let that = this
         let request = {
@@ -76,6 +82,7 @@ export class HomePage implements OnInit {
                 that.placedetails.address = place.formatted_address;
                 that.placedetails.lat = place.geometry.location.lat();
                 that.placedetails.lng = place.geometry.location.lng();
+                that.photos = place.photos;
                 place.address_components.map((val, i) => {
                     let addressType = place.address_components[i].types[0];
                     if (that.placedetails.components[addressType]) {

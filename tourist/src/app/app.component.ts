@@ -30,12 +30,10 @@ export class MyApp {
       firebase.auth().onAuthStateChanged((user) => {
 
           if (!user) {
-              console.log("not login");
               this.rootPage = Login;
 
 
           } else {
-              console.log("login");
               this.rootPage = TabsPage;
 
           }
@@ -43,8 +41,6 @@ export class MyApp {
       });
 
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });

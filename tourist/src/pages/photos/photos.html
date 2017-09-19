@@ -1,0 +1,12 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button outline item-left (click)='dismiss()'>Close</button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor='let photo of photos'>
+      {{photo?.getUrl({ 'maxWidth': 350, 'maxHeight': 350 })}}
+  </ion-list>
+</ion-content>

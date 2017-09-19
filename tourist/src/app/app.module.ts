@@ -5,14 +5,14 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
-import { GoogleMapPage } from '../pages/google-map/google-map'
 import { Login } from '../pages/login/login';
 
 import { HomePage } from '../pages/home/home';
+
 import { ModalAutocompletePage } from '../pages/modal-autocomplete/modal-autocomplete';
+import { PhotosPage } from '../pages/photos/photos';
 
 import {Signup} from '../pages/signup/signup';
 
@@ -28,14 +28,13 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
     ModalAutocompletePage,
       TabsPage,
       Login,
-      GoogleMapPage,
-      Signup
+      Signup,
+      PhotosPage
   ],
   imports: [
     BrowserModule,
@@ -45,14 +44,13 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     ContactPage,
     HomePage,
     ModalAutocompletePage,
       TabsPage,
       Login,
-      GoogleMapPage,
-      Signup
+      Signup,
+      PhotosPage
   ],
   providers: [
     AuthData,

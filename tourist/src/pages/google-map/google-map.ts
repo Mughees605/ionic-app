@@ -35,7 +35,7 @@ export class GoogleMapPage implements OnInit {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
     if(this.Destination){
       this.loadMap();
     }
