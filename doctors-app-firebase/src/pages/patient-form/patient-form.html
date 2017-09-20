@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>patient-form</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="login-box">
+
+    <form (ngSubmit)="savePatient(patientForm)" #patientForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input type="text" placeholder="First Name" name="firstname" ngModel required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Last Name" name="lastname" ngModel required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="patient Disease" name="patientdis" ngModel required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="patient Medication" name="patientmed" ngModel required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="number" name="cost" ngModel placeholder="Cost"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY" name="Date" ngModel></ion-datetime>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!patientForm.valid">Save Patient</button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
+</ion-content>
