@@ -7,14 +7,16 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class PhotosPage {
   photos = [];
+  urls = [];
   constructor(public viewCtrl: ViewController, public navParams: NavParams) {
     this.photos = this.navParams.get('photos')
   }
 
   ionViewDidLoad() {
    this.photos.map((val)=>{
-     console.log(val.getUrl({ 'maxWidth': 350, 'maxHeight': 350 }))
+     this.urls.push(val.getUrl({ 'maxWidth': 500, 'maxHeight':500  }))
    })
+   
   }
 
   dismiss(){
