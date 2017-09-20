@@ -3,50 +3,48 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 
 import firebase from 'firebase';
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+    rootPage: any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
-      // Initialize Firebase
-      var config = {
-          apiKey: "AIzaSyCvvSQqYSSWBBBiaFZBN_5t-Oe5zFzDP9o",
-          authDomain: "auth-7ba82.firebaseapp.com",
-          databaseURL: "https://auth-7ba82.firebaseio.com",
-          projectId: "auth-7ba82",
-          storageBucket: "auth-7ba82.appspot.com",
-          messagingSenderId: "739485368266"
-      };
-      firebase.initializeApp(config);
-      firebase.auth().onAuthStateChanged((user) => {
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC-UapMzsEcIwcm9bv04z8-90YqJPVSwrU",
+            authDomain: "doctors-app-b4c61.firebaseapp.com",
+            databaseURL: "https://doctors-app-b4c61.firebaseio.com",
+            projectId: "doctors-app-b4c61",
+            storageBucket: "",
+            messagingSenderId: "1081323449750"
+        };
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged((user) => {
 
-          if (!user) {
-              console.log("not login");
-              this.rootPage = Login;
+            if (!user) {
+                console.log("not login");
+                this.rootPage = Login;
 
 
-          } else {
-              console.log("login");
-              this.rootPage = HomePage;
+            } else {
+                console.log("login");
+                this.rootPage = HomePage;
 
-          }
+            }
 
-      });
+        });
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+        platform.ready().then(() => {
+            
+            statusBar.styleDefault();
+            splashScreen.hide();
+        });
+    }
 }

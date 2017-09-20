@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { PatientModel } from '../../model/patient.model';
 import { PatientProvider } from '../../providers/patient/patient.service';
+
 @Component({
   selector: 'page-patient-form',
   templateUrl: 'patient-form.html',

@@ -6,12 +6,11 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
+import { PatientFormPage } from '../pages/patient-form/patient-form';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 import { Login } from '../pages/login/login';
 
-import {ResetPassword}from '../pages/reset-password/reset-password';
-import {Signup} from '../pages/signup/signup';
+import { Signup } from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,10 +24,10 @@ import { AuthData } from '../providers/auth-data';
     AboutPage,
     ContactPage,
     HomePage,
-      TabsPage,
-      Login,
-      ResetPassword,
-      Signup
+    DashboardPage,
+    Login,
+    PatientFormPage,
+    Signup
   ],
   imports: [
     BrowserModule,
@@ -40,16 +39,16 @@ import { AuthData } from '../providers/auth-data';
     AboutPage,
     ContactPage,
     HomePage,
-      TabsPage,
-      Login,
-      ResetPassword,
-      Signup
+    Login,
+    PatientFormPage,
+    DashboardPage,
+    Signup
   ],
   providers: [
-      AuthData,
+    AuthData,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
