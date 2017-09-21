@@ -17,36 +17,29 @@ export class LoginPage {
   @ViewChild('f') form: NgForm;
 
   constructor(
-    private nav: NavController, 
-    private alertCtrl: AlertController, 
-    private loadingCtrl: LoadingController, 
+    private nav: NavController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
     private afAuth: AngularFireAuth,
     private auth: Auth) {
-    
-     }
 
-    ionViewDidLoad(){
-      this.afAuth.authState.subscribe((user: firebase.User) => {
-        if(user){
-          this.nav.setRoot(HomePage);
-        }
-      });
-    }
+  }
+
   public login(form: NgForm) {
 
     const { email, password } = form.value;
 
     let user = new Login(email, password);
     this.showLoading();
-    this.auth.login(user).then((res)=>{
+    this.auth.login(user).then((res) => {
 
       this.nav.setRoot(HomePage);
-    },(err)=>{
+    }, (err) => {
       this.showError(err.message)
     })
-    .catch((err)=>{
-      this.showError(err.message)
-    })
+      .catch((err) => {
+        this.showError(err.message)
+      })
   }
 
   showLoading() {
