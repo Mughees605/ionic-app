@@ -25,19 +25,15 @@ export class RegistrationPage {
 
   const newUser = new  Register(email,password,doctors_id);
 
-    this.auth.signUp(newUser).subscribe((res)=>{
-     if(res.status){
+    this.auth.signUp(newUser).then((res)=>{
        this.createSuccess = true;
       this.showPopup("Success", "AccountCreated")
-     }
-     else if(res.status == false) {
-      this.createSuccess = false;
-      this.showPopup("Error", "username already created")
-     }
     },
     (err)=>{
         this.createSuccess = false;
         this.showPopup("Error",'Problem creating account');
+      }).catch((err)=>{
+        this.showPopup("Error",err)
       })
      form.reset();
    }

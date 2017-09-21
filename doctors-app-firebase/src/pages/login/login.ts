@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { HomePage } from '..//home/home'
+import { HomePage } from '../home/home';
+import { DashboardPage } from '../dashboard/dashboard'
 import { RegistrationPage } from '../registration/registration'
 import { NavController, Loading, AlertController, LoadingController } from 'ionic-angular';
 import { Login } from '../../model/login.model';
 import { Auth } from '../../providers/auth/auth.service';
-
+import { AngularFireAuth } from 'angularfire2/auth'
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -19,13 +20,17 @@ export class LoginPage {
     private nav: NavController, 
     private alertCtrl: AlertController, 
     private loadingCtrl: LoadingController, 
-    private auth: Auth) { }
+    private afAuth: AngularFireAuth,
+    private auth: Auth) {
+    
+     }
 
     ionViewDidLoad(){
-      let user = localStorage.getItem('user')
-       if(user){
-         this.nav.setRoot(HomePage);
-       }
+      this.afAuth.authState.subscribe((user: firebase.User) => {
+        if(user){
+          this.nav.setRoot(HomePage);
+        }
+      });
     }
   public login(form: NgForm) {
 
@@ -33,18 +38,15 @@ export class LoginPage {
 
     let user = new Login(email, password);
     this.showLoading();
-    this.auth.login(user).subscribe((res)=>{
-       if(res.status){
-         this.nav.setRoot(HomePage);
-       }
-       else {
-         this.showError("Access Denied");
-       }
-    },
-    err=>{
-      this.showError("Access Denied");
+    this.auth.login(user).then((res)=>{
+
+      this.nav.setRoot(HomePage);
+    },(err)=>{
+      this.showError(err.message)
     })
-    form.reset();
+    .catch((err)=>{
+      this.showError(err.message)
+    })
   }
 
   showLoading() {

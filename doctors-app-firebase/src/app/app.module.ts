@@ -4,7 +4,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
 import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { HomePage } from '../pages/home/home';
@@ -18,17 +17,11 @@ import { Auth } from '../providers/auth/auth.service';
 import { PatientProvider } from '../providers/patient/patient.service';
 import { NativeStorage } from '@ionic-native/native-storage';
 
+import { enviroment } from '../enviroments/enviroments';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 /*firebaser credentials*/
-export const firebaseConfig = {
-  apiKey: "AIzaSyAJUVixnpJEMoXuHzHfYNDTLk7-RDO0HY4",
-  authDomain: "ng-http-452a4.firebaseapp.com",
-  databaseURL: "https://ng-http-452a4.firebaseio.com",
-  projectId: "ng-http-452a4",
-  storageBucket: "ng-http-452a4.appspot.com",
-  messagingSenderId: "32230195720"
-};
 /**/
 @NgModule({
   declarations: [
@@ -44,7 +37,8 @@ export const firebaseConfig = {
     BrowserModule,
     HttpModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(enviroment.firebase,),
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
   ],
