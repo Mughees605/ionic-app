@@ -9,6 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class PatientFormPage {
   user_id: string;
+  gender:string;
   @ViewChild('patientForm') form: NgForm
 
   constructor(
@@ -24,8 +25,9 @@ export class PatientFormPage {
   }
 
   savePatient(form: NgForm) {
-    let { firstname, lastname, patientdis, patientmed, cost, Date } = form.value;
-    let Patient = new PatientModel(firstname, lastname, patientdis, patientmed, cost, Date);
+    console.log(form.value);
+    let { firstname, lastname, patientdis, patientmed, cost, Date, gender } = form.value;
+    let Patient = new PatientModel(firstname, lastname, patientdis, patientmed, cost, Date, gender);
     this.patientSer.addPatient(this.user_id, Patient).then((res)=>{
       form.reset();
     },(err)=>{

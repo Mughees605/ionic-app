@@ -18,23 +18,32 @@ export class DashboardPage {
   patientDetail = PatientDetailPage;
   constructor(
     private patientService: PatientProvider,
+     private loadingCtrl: LoadingController,
     private nav: NavController,
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController) {
 
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.afAuth.authState.subscribe((user: firebase.User) => {
-      if(!user){
+      if (!user) {
         this.nav.setRoot(LoginPage);
       }
-      else{
-         this.patientService.getSelectedDoctorPatients(user.uid).subscribe((res)=>{
-           this.patients = res
-         })
+      else {
+        this.patientService.getSelectedDoctorPatients(user.uid).subscribe((res) => {
+          this.patients = res
+        })
       }
     });
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
   }
 
   showError(text) {

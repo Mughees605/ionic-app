@@ -35,12 +35,20 @@
             </ion-item>
 
             <ion-item>
-              <ion-input type="number" name="cost" ngModel placeholder="Cost"></ion-input>
+              <ion-input type="number" name="cost" ngModel placeholder="Cost" required></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label>Date</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY" name="Date" ngModel></ion-datetime>
+              <ion-datetime displayFormat="MM/DD/YYYY" name="Date" ngModel required></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Gender</ion-label>
+              <ion-select name='gender' [(ngModel)]="gender" required>
+                <ion-option value="female">Female</ion-option>
+                <ion-option value="male">Male</ion-option>
+              </ion-select>
             </ion-item>
 
           </ion-list>

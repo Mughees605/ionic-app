@@ -3,7 +3,10 @@ page-patient-detail {
         position: relative;
         text-align: center;
       }
-    
+      h2{
+         color: #999;
+      }
+
       .card-title {
         position: absolute;
         top: 36%;
@@ -12,7 +15,7 @@ page-patient-detail {
         font-weight: bold;
         color: #fff;
       }
-    
+
       .card-subtitle {
         font-size: 1.0em;
         position: absolute;
@@ -20,5 +23,5 @@ page-patient-detail {
         width: 100%;
         color: #fff;
       }
-    
+
 }
