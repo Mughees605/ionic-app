@@ -11,14 +11,14 @@ declare var google;
     templateUrl: 'home.html'
 })
 export class HomePage implements OnInit {
-    latLng: any = { lat: "", lng: "" };
+    latLng: any = { lat: 24.8614622, lng: 67.0099388 };
     address: any = {
         place: '',
         set: false
     }
     map: any;
     placeService: any;
-    Destination:string = '';
+    Destination: string = '';
     placedetails: any;
     photos = [];
     constructor(public navCtrl: NavController, public modCtrl: ModalController, public authData: AuthData, private locService: LocationsProvider) {
@@ -26,12 +26,18 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit() {
+
+    }
+
+    ionViewDidLoad() {
         this.locService.currentPosition().subscribe((res) => {
             this.latLng.lat = res.coords.latitude;
             this.latLng.lng = res.coords.longitude;
+            console.log(this.latLng)
             this.initMap();
             this.initPlacedetails();
         })
+
     }
 
     private initMap() {
@@ -44,7 +50,15 @@ export class HomePage implements OnInit {
             zoomControl: true
         });
 
-        if(this.Destination.length > 0){
+        let marker = new google.maps.Marker({
+            position:this.latLng,
+            map: this.map,
+            animation: google.maps.Animation.DROP,
+            label:'A'
+        })
+        marker.setMap(this.map);
+
+        if (this.Destination.length > 0) {
             this.loadMap();
         }
     }
@@ -64,8 +78,8 @@ export class HomePage implements OnInit {
         modal.present();
     }
 
-    showPhotosModal(){
-        let modal = this.modCtrl.create(PhotosPage,{photos:this.photos});
+    showPhotosModal() {
+        let modal = this.modCtrl.create(PhotosPage, { photos: this.photos });
         modal.present();
     }
 

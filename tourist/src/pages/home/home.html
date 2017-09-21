@@ -4,15 +4,16 @@
             <ion-icon name="menu"></ion-icon>
         </button>
     <ion-title>Places Autocomplete</ion-title>
+    <ion-item item-left>
+      <button ion-button icon-only (click)="logOut()" item-> log out
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-item>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <div id="map"></div>
-
-  <!--<button ion-button icon-only (click)="logOut()"> log out
-        <ion-icon name="log-out"></ion-icon>
-      </button>-->
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>Search Location</ion-label>
