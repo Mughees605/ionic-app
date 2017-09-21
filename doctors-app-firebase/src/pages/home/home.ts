@@ -9,39 +9,31 @@ import { PatientFormPage } from '../patient-form/patient-form';
   selector: 'page-home',
   templateUrl: 'home.html',
 })
-export class HomePage implements OnInit {
+export class HomePage {
   @ViewChild(Nav) nav: Nav;
   pages;
-  loading:Loading;
+  loading: Loading;
   constructor(
-    public navCtrl: NavController, 
-    public auth: Auth, 
+    public navCtrl: NavController,
+    public auth: Auth,
     public menu: MenuController,
-    private loadingCtrl:LoadingController,
-    private alertCtrl:AlertController
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
   ) {
 
     this.pages = [
       { title: 'Patient-form', component: PatientFormPage },
-      { title: 'Patient List', component: DashboardPage}
+      { title: 'Patient List', component: DashboardPage }
     ];
   }
   rootPage = DashboardPage;
 
-  ngOnInit() {
-  }
-
   logout() {
-    this.showLoading();    
-    this.auth.logout().subscribe((res) => {
-      if (res.status && res.status == 200) {
-        this.navCtrl.setRoot(LoginPage);
-      }
-      else{
-        this.showError('No Internet Connection')
-      }
-    },(err)=>{
-      this.showError(err);
+    this.showLoading();
+    this.auth.logout().then(() => {
+      localStorage.removeItem('uid');
+    }, (err) => {
+      this.showError(err.message)
     })
   }
 

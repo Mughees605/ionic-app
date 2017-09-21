@@ -21,7 +21,7 @@ export class DashboardPage {
     private nav: NavController,
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController) {
-    
+
   }
 
   ionViewDidLoad(){
@@ -47,7 +47,8 @@ export class DashboardPage {
   }
 
   setFilteredItems() {
-    // this.patients = this.patientService.filterItems(this.searchTerm);
+
+    this.patients = this.patientService.filterItems(this.searchTerm);
   }
 
 

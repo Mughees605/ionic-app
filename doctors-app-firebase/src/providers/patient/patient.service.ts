@@ -5,12 +5,13 @@ import { Patient } from './patient.interface';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
 import { Observable } from  'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 const headers = new Headers({ "Content-Type": "application/json" });
 
 @Injectable()
 export class PatientProvider {
   patients: Patient[];
-
+  allPatient = new Subject<any>();
   constructor(public http: Http, private db:AngularFireDatabase) {
   }
 
@@ -19,8 +20,11 @@ export class PatientProvider {
     return item;
   };
 
-  getSelectedDoctorPatients(did: string){
-   return this.db.list(`doctor/${did}`)
+  getSelectedDoctorPatients(did: string):Observable<any>{
+   return this.db.list(`doctor/${did}`).map((res)=>{
+     this.patients = res;
+     return res;
+   })
   };
 
   filterItems(patientTerm:string) {

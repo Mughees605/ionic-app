@@ -24,6 +24,12 @@ export class LoginPage {
     private auth: Auth) {
 
   }
+  ionViewDidLoad(){
+    let uid = localStorage.getItem('uid');
+    if(uid){
+      this.nav.setRoot(HomePage);
+    }
+  }
 
   public login(form: NgForm) {
 
@@ -32,7 +38,7 @@ export class LoginPage {
     let user = new Login(email, password);
     this.showLoading();
     this.auth.login(user).then((res) => {
-
+      localStorage.setItem('uid', res.uid);
       this.nav.setRoot(HomePage);
     }, (err) => {
       this.showError(err.message)

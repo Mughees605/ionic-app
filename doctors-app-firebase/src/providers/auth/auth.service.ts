@@ -13,30 +13,17 @@ export class Auth {
   user = new Subject<any>();
   constructor(private http: Http, public afAuth:AngularFireAuth) { }
 
-  apiUrl: 'https://serene-refuge-41977.herokuapp.com/api';
 
-  signUp(user: any):firebase.Promise<any> { 
+  signUp(user: any):firebase.Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(user.username,user.password)
   }
 
   login(user):firebase.Promise<any>  {
-    console.log(user);
     return this.afAuth.auth.signInWithEmailAndPassword(user.user_id,user.password)
   }
 
-  logout() {
-    return this.http.get('https://serene-refuge-41977.herokuapp.com/api/logout')
-      .map((res) => {
-        localStorage.removeItem('user')
-        return res
-      })
-      .catch((err) => Observable.throw(err));
+  logout():firebase.Promise<any>{
+    return this.afAuth.auth.signOut()
   }
 
-  dashboard() {
-    return this.http.get('https://serene-refuge-41977.herokuapp.com/api/dashboard')
-      .map((res) => {
-        return res
-      })
-  }
 }
