@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { AuthData } from '../../providers/auth-data';
 import { LocationsProvider } from '../../providers/locations/locations'
 import { Login } from '../login/login';
 import { ModalAutocompletePage } from '../modal-autocomplete/modal-autocomplete';
 import { PhotosPage } from '../photos/photos';
+import { GoogleMapPage } from '../google-map/google-map';
 declare var google;
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
 })
-export class HomePage implements OnInit {
+export class HomePage {
+    googleMap = GoogleMapPage;
     latLng: any = { lat: 24.8614622, lng: 67.0099388 };
     address: any = {
         place: '',
@@ -25,46 +27,33 @@ export class HomePage implements OnInit {
 
     }
 
-    ngOnInit() {
-
-    }
-
     ionViewDidLoad() {
         this.locService.currentPosition().subscribe((res) => {
             this.latLng.lat = res.coords.latitude;
             this.latLng.lng = res.coords.longitude;
-            console.log(this.latLng)
-            this.initMap();
-            this.initPlacedetails();
+            setTimeout(() => {
+                this.initMap();
+                this.initPlacedetails();
+            }, 1000)
         })
 
     }
 
     private initMap() {
         var point = this.latLng;
-        let divMap = (<HTMLInputElement>document.getElementById('map'));
+        let divMap = (<HTMLInputElement>document.getElementById('map-canvas'));
         this.map = new google.maps.Map(divMap, {
             center: point,
             zoom: 15,
             draggable: true,
             zoomControl: true
         });
-
-        let marker = new google.maps.Marker({
-            position:this.latLng,
-            map: this.map,
-            animation: google.maps.Animation.DROP,
-            label:'A'
-        })
-        marker.setMap(this.map);
-
         if (this.Destination.length > 0) {
             this.loadMap();
         }
     }
 
     showModal() {
-
         let modal = this.modCtrl.create(ModalAutocompletePage);
         modal.onDidDismiss(data => {
             if (data) {
@@ -126,15 +115,15 @@ export class HomePage implements OnInit {
             lat: '',
             lng: '',
             components: {
-                route: { set: false, short: '', long: '' },                           // calle 
-                street_number: { set: false, short: '', long: '' },                   // numero
-                sublocality_level_1: { set: false, short: '', long: '' },             // barrio
-                locality: { set: false, short: '', long: '' },                        // localidad, ciudad
-                administrative_area_level_2: { set: false, short: '', long: '' },     // zona/comuna/partido 
-                administrative_area_level_1: { set: false, short: '', long: '' },     // estado/provincia 
-                country: { set: false, short: '', long: '' },                         // pais
-                postal_code: { set: false, short: '', long: '' },                     // codigo postal
-                postal_code_suffix: { set: false, short: '', long: '' },              // codigo postal - sufijo
+                route: { set: false, short: '', long: '' },
+                street_number: { set: false, short: '', long: '' },
+                sublocality_level_1: { set: false, short: '', long: '' },
+                locality: { set: false, short: '', long: '' },
+                administrative_area_level_2: { set: false, short: '', long: '' },
+                administrative_area_level_1: { set: false, short: '', long: '' },
+                country: { set: false, short: '', long: '' },
+                postal_code: { set: false, short: '', long: '' },
+                postal_code_suffix: { set: false, short: '', long: '' },
             }
         };
     }
@@ -168,6 +157,7 @@ export class HomePage implements OnInit {
     logOut() {
         this.authData.logoutUser().then(() => {
             this.navCtrl.setRoot(Login);
+            localStorage.removeItem('user');
         });
     }
 

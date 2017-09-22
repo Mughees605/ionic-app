@@ -10,47 +10,36 @@ declare var google;
   selector: 'page-google-map',
   templateUrl: 'google-map.html',
 })
-export class GoogleMapPage implements OnInit {
+export class GoogleMapPage {
   subscription: Subscription
-  Destination: string = '';
+  Destination: string = 'Frere Hall';
   MyLocation: any;
   map: any;
   latLng: any = { lat: "", lng: "" };
-  @ViewChild('map') mapElement: ElementRef;
   constructor(public navCtrl: NavController, public navParams: NavParams, private geoLoc: Geolocation, private locService: LocationsProvider, public modCtrl: ModalController) {
   }
-
-  ngOnInit() {
+  ionViewDidLoad() {
     this.locService.currentPosition().subscribe((res) => {
       this.latLng.lat = res.coords.latitude;
       this.latLng.lng = res.coords.longitude;
+      this.Destination = this.navParams.data;
       this.initMap();
     })
+
   }
 
   initMap() {
+    console.log('hello')
+    console.log(this.Destination)
     let mapOptions = {
       center: this.latLng,
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    if(this.Destination){
+    this.map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
+    if (this.Destination) {
       this.loadMap();
     }
-  }
-
-  private showModal(): void {
-    this.Destination = '';
-    let Modal = this.modCtrl.create(ModalAutocompletePage);
-    Modal.onDidDismiss(data => {
-      if (data) {
-        this.Destination = data.description;
-        this.initMap();
-      }
-    })
-    Modal.present();
   }
 
   loadMap() {

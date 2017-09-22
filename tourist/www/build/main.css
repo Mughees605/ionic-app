@@ -24313,7 +24313,12 @@ ion-navbar.toolbar {
   }
 }
 
-page-home #map {
+page-google-map #google-map {
+  height: 100%;
+  width: 100%;
+}
+
+page-home #map-canvas {
   width: 100%;
   height: 50%;
 }

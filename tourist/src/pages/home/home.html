@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <div id="map"></div>
+  <div id="map-canvas"></div>
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>Search Location</ion-label>
@@ -36,8 +36,11 @@
       <p>{{ placedetails.components.locality.long }}</p>
       <h3>Location geometry</h3>
       <p>{{ placedetails.lat }}, {{ placedetails.lng }}</p>
+      <button ion-button full [navPush]='googleMap' [navParams]='Destination'>
+        Show Full Map
+      </button>
     </ion-item>
-    <button ion-button full outline (click)='showPhotosModal()' *ngIf='photos && photos.length > 0'>
+    <button ion-button full (click)='showPhotosModal()' *ngIf='photos && photos.length > 0'>
       Show Images
     </button>
   </ion-list>

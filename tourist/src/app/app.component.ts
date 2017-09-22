@@ -27,18 +27,7 @@ export class MyApp {
         messagingSenderId: "32230195720"
       };
       firebase.initializeApp(config);
-      firebase.auth().onAuthStateChanged((user) => {
 
-          if (!user) {
-              this.rootPage = Login;
-
-
-          } else {
-              this.rootPage = TabsPage;
-
-          }
-
-      });
 
     platform.ready().then(() => {
       statusBar.styleDefault();

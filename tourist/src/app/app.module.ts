@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
 
 import { HomePage } from '../pages/home/home';
-
+import { GoogleMapPage } from '../pages/google-map/google-map';
 import { ModalAutocompletePage } from '../pages/modal-autocomplete/modal-autocomplete';
 import { PhotosPage } from '../pages/photos/photos';
 
@@ -30,6 +30,7 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
     MyApp,
     ContactPage,
     HomePage,
+    GoogleMapPage,
     ModalAutocompletePage,
       TabsPage,
       Login,
@@ -48,6 +49,7 @@ import { LocationsProvider } from '../providers/locations/locations.ts';
     HomePage,
     ModalAutocompletePage,
       TabsPage,
+      GoogleMapPage,
       Login,
       Signup,
       PhotosPage

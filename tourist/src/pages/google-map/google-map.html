@@ -15,9 +15,8 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-input type="text" [(ngModel)]="Destination" placeholder="Pick an address" (click)="showModal()"></ion-input>
     </ion-item>
   </ion-list>
-  <div #map id="map"></div>
+  <div id="google-map"></div>
    <button ion-button full (click)="initMap()">Get Direction</button>
 </ion-content>

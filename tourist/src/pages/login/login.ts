@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController,
-    AlertController } from 'ionic-angular';
+import {
+    IonicPage, NavController, NavParams, LoadingController,
+    AlertController
+} from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { EmailValidator } from '../../validators/email';
@@ -9,6 +11,7 @@ import { AuthData } from '../../providers/auth-data';
 import { TabsPage } from '../tabs/tabs'
 
 import { Signup } from '../signup/signup';
+import firebase from 'firebase';
 
 @Component({
     selector: 'page-login',
@@ -36,6 +39,7 @@ export class Login {
         } else {
             this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then(authData => {
                 this.loading.dismiss().then(() => {
+                    localStorage.setItem('user',authData.uid);
                     this.nav.setRoot(TabsPage);
                 });
             }, error => {

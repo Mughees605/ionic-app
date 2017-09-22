@@ -4,7 +4,8 @@ import { IonicPage, NavController, NavParams, LoadingController,
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
 import { EmailValidator } from '../../validators/email';
-import { TabsPage } from '../tabs/tabs'
+import { TabsPage } from '../tabs/tabs';
+import { Login } from '../login/login'
 
 @IonicPage()
 @Component({
@@ -27,12 +28,6 @@ export class Signup {
         })
     }
 
-    /**
-     * If the form is valid it will call the AuthData service to sign the user up password displaying a loading
-     *  component while the user waits.
-     *
-     * If the form is invalid it will just log the form value, feel free to handle that as you like.
-     */
     signupUser() {
         if (!this.signupForm.valid) {
             console.log(this.signupForm.value);
@@ -40,7 +35,7 @@ export class Signup {
             this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
                 .then(() => {
                     this.loading.dismiss().then(() => {
-                        this.nav.setRoot(TabsPage);
+                        this.nav.setRoot(Login);
                     });
                 }, (error) => {
                     this.loading.dismiss().then(() => {

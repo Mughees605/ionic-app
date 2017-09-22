@@ -25,16 +25,7 @@ export class AuthData {
    * @param  {string} password [User's password]
    */
   signupUser(email: string, password: string): firebase.Promise<any> {
-      return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
-         // firebase.database().ref('/users').child(email).set({
-          //    firstName: "anonymous",
-           //   id:newUser.uid,
-         // });
-        firebase.database().ref('/userProfile').child(newUser.uid).set({
-            firstName: "anonymous",
-             email: email
-      });
-    });
+      return firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
   /**
