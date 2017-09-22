@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { MenuController, Nav, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth/auth.service';
-import { LoginPage } from '../login/login';
 import { DashboardPage } from '../dashboard/dashboard';
 import { PatientFormPage } from '../patient-form/patient-form';
 

@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Rx';
 import firebase from 'firebase';
-const headers = new Headers({ "Content-Type": "application/json" });
 @Injectable()
 
 export class Auth {
   username:string;
   user = new Subject<any>();
-  constructor(private http: Http, public afAuth:AngularFireAuth) { }
+  constructor(public afAuth:AngularFireAuth) { }
 
 
   signUp(user: any):firebase.Promise<any> {
