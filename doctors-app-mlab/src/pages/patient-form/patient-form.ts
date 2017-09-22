@@ -18,8 +18,8 @@ export class PatientFormPage {
 
   savePatient(form: NgForm) {
     let user = localStorage.getItem('user');
-    let { firstname, lastname, patientdis, patientmed, cost, Date } = form.value;
-    let Patient = new PatientModel(firstname, lastname, patientdis, patientmed, cost, Date);
+    let { firstname, lastname, patientdis, patientmed, cost, Date, gender } = form.value;
+    let Patient = new PatientModel(firstname, lastname, patientdis, patientmed, cost, Date, gender);
     this.patientSer.addPatient(user, Patient).subscribe((res) => {
       if (res.status) {
         this.form.reset();

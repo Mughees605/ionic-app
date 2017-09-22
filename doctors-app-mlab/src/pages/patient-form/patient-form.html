@@ -40,7 +40,15 @@
 
             <ion-item>
               <ion-label>Date</ion-label>
-              <ion-datetime displayFormat="MM/DD/YYYY" name="Date" ngModel></ion-datetime>
+              <ion-datetime displayFormat="MM/DD/YYYY" name="Date" ngModel required></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Gender</ion-label>
+              <ion-select [(ngModel)]="gender" name='gender' required>
+                <ion-option value="female">Female</ion-option>
+                <ion-option value="Male">Male</ion-option>
+              </ion-select>
             </ion-item>
 
           </ion-list>
