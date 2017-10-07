@@ -8,7 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AuthData } from '../../providers/auth-data';
 // import {HomePage}from'../home/home';
-import { TabsPage } from '../tabs/tabs'
+import { HomePage } from '../home/home'
 
 import { Signup } from '../signup/signup';
 import firebase from 'firebase';
@@ -35,7 +35,7 @@ export class Login {
 
     ionViewDidLoad(){
         if(localStorage.getItem('user')){
-            this.nav.setRoot(TabsPage);
+            this.nav.setRoot(HomePage);
         }
     }
 
@@ -46,7 +46,7 @@ export class Login {
             this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then(authData => {
                 this.loading.dismiss().then(() => {
                     localStorage.setItem('user',authData.uid);
-                    this.nav.setRoot(TabsPage);
+                    this.nav.setRoot(HomePage);
                 });
             }, error => {
                 this.loading.dismiss().then(() => {

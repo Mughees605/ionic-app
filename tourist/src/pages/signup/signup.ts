@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams, LoadingController,
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
 import { EmailValidator } from '../../validators/email';
-import { TabsPage } from '../tabs/tabs';
 import { Login } from '../login/login'
 
 @IonicPage()

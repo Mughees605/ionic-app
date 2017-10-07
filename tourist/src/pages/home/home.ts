@@ -48,6 +48,10 @@ export class HomePage {
             draggable: true,
             zoomControl: true
         });
+        var marker = new google.maps.Marker({
+            map: this.map,
+            position: point
+        });
         if (this.Destination.length > 0) {
             this.loadMap();
         }
