@@ -24325,6 +24325,7 @@ page-home #map-canvas {
 
 page-home .logout {
   float: right;
+  margin-top: -22px;
 }
 
 page-home .but {
