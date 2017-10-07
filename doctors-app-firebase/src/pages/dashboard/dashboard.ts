@@ -33,6 +33,8 @@ export class DashboardPage {
       else {
         this.patientService.getSelectedDoctorPatients(user.uid).subscribe((res) => {
           this.patients = res
+        },(err)=>{
+          console.error(err);
         })
       }
     });

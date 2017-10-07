@@ -29,7 +29,8 @@ export class PatientProvider {
 
   filterItems(patientTerm:string) {
     return this.patients && this.patients.filter((item) => {
-      return item.firstname.toLowerCase().indexOf(patientTerm.toLowerCase()) > -1;
+      
+      return item.firstname.toLowerCase().indexOf(patientTerm.toLowerCase()) > -1 || item.Date.indexOf(patientTerm) > -1;
     });
   }
 
