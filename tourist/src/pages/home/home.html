@@ -3,10 +3,9 @@
     <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>Places Autocomplete</ion-title>
     <ion-item item-left>
-      <button ion-button icon-only (click)="logOut()" item-> log out
-        <ion-icon name="log-out"></ion-icon>
+      <ion-title>Places Autocomplete</ion-title>
+      <button class="logout" ion-button outline icon-only (click)="logOut()"> log out
       </button>
     </ion-item>
   </ion-navbar>
@@ -17,7 +16,7 @@
   <ion-list>
     <ion-item>
       <ion-label color="primary" stacked>Search Location</ion-label>
-      <ion-input type="text" placeholder="Pick an address" (click)="showModal()" [(ngModel)]="address.place">
+      <ion-input type="text" placeholder="Pick an address" (focus)="showModal()" [(ngModel)]="address.place">
       </ion-input>
     </ion-item>
     <ion-item *ngIf="address.set==true">

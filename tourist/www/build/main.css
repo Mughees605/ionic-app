@@ -24322,3 +24322,8 @@ page-home #map-canvas {
   width: 100%;
   height: 50%;
 }
+
+page-home .logout {
+  float: right;
+  margin-top: -22px;
+}

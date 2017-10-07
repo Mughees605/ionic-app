@@ -33,6 +33,12 @@ export class Login {
 
     }
 
+    ionViewDidLoad(){
+        if(localStorage.getItem('user')){
+            this.nav.setRoot(TabsPage);
+        }
+    }
+
     loginUser(): void {
         if (!this.loginForm.valid) {
             console.log(this.loginForm.value);
