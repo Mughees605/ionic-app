@@ -31,8 +31,12 @@ export class DashboardPage {
         this.nav.setRoot(LoginPage);
       }
       else {
+        this.showLoading();
         this.patientService.getSelectedDoctorPatients(user.uid).subscribe((res) => {
           this.patients = res
+          if(this.patients && this.patients.length> 0){
+              this.loading.dismiss();
+          }
         },(err)=>{
           console.error(err);
         })
