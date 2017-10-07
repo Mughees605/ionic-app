@@ -35,12 +35,14 @@
       <p>{{ placedetails.components.locality.long }}</p>
       <h3>Location geometry</h3>
       <p>{{ placedetails.lat }}, {{ placedetails.lng }}</p>
-      <button ion-button full [navPush]='googleMap' [navParams]='Destination'>
-        Show Full Map
-      </button>
     </ion-item>
-    <button ion-button full (click)='showPhotosModal()' *ngIf='photos && photos.length > 0'>
-      Show Images
-    </button>
+  </ion-list>
+  <ion-list class="but" *ngIf="address.set==true">
+    <button  ion-button outline [navPush]='googleMap' [navParams]='Destination'>
+          Show Full Map
+        </button>
+    <button ion-button outline (click)='showPhotosModal()'>
+        Show Images
+      </button>
   </ion-list>
 </ion-content>

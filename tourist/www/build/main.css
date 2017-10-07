@@ -24325,5 +24325,15 @@ page-home #map-canvas {
 
 page-home .logout {
   float: right;
-  margin-top: -22px;
+}
+
+page-home .but {
+  margin: 0px auto;
+  width: 87%;
+}
+
+page-photos h2 {
+  text-align: center;
+  margin-top: 150px;
+  color: gray;
 }
