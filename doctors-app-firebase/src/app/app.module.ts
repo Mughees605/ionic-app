@@ -7,14 +7,11 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { HomePage } from '../pages/home/home';
-import { PatientFormPage } from '../pages/patient-form/patient-form';
 import { DashboardPage } from '../pages/dashboard/dashboard';
-import { PatientDetailPage } from '../pages/patient-detail/patient-detail'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Auth } from '../providers/auth/auth.service';
-import { PatientProvider } from '../providers/patient/patient.service';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { enviroment } from '../enviroments/enviroments';
@@ -29,9 +26,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     LoginPage,
     RegistrationPage,
     HomePage,
-    PatientFormPage,
     DashboardPage,
-    PatientDetailPage
   ],
   imports: [
     BrowserModule,
@@ -49,15 +44,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     LoginPage,
     RegistrationPage,
     DashboardPage,
-    PatientFormPage,
-    PatientDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Auth,
-    PatientProvider,
     NativeStorage
   ]
 })
