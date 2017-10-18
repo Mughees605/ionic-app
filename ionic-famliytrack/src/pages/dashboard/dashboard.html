@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>dashboard</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+    <ion-list *ngIf='patients && patients.length'>
+    <button ion-item *ngFor='let patient of patients' [navPush]='patientDetail' [navParams]='patient'>
+      <ion-avatar item-left>
+          <ion-icon name='contact'></ion-icon>
+      </ion-avatar>
+      <h2>{{patient?.firstname}} {{patient?.lastname}}</h2>
+      <h2 item-reight>{{patient?.Date}}</h2>
+       <ion-icon name="arrow-forward" item-right></ion-icon>
+    </button>
+  </ion-list>
+  <h3 *ngIf="patients && patients.length == 0">No Patient Added</h3>
+</ion-content>
