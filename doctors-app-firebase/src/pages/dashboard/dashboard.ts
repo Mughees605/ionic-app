@@ -5,7 +5,6 @@ import { PatientDetailPage } from '../patient-detail/patient-detail';
 import { NavController, Loading, AlertController, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseListObservable } from 'angularfire2/database'
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
@@ -26,7 +25,7 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
-    this.afAuth.authState.subscribe((user: firebase.User) => {
+    this.afAuth.authState.subscribe((user: any) => {
       if (!user) {
         this.nav.setRoot(LoginPage);
       }

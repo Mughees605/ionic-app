@@ -15,16 +15,13 @@ export class PatientProvider {
   constructor(public http: Http, private db:AngularFireDatabase) {
   }
 
-  addPatient(user: string, patient):firebase.Promise<any> {
+  addPatient(user: string, patient) {
     let item = this.db.list(`doctor/${user}`).push(patient)
     return item;
   };
 
   getSelectedDoctorPatients(did: string):Observable<any>{
-   return this.db.list(`doctor/${did}`).map((res)=>{
-     this.patients = res;
-     return res;
-   })
+   return this.db.list(`doctor/${did}`).valueChanges()
   };
 
   filterItems(patientTerm:string) {

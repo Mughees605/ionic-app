@@ -11,15 +11,15 @@ export class Auth {
   constructor(public afAuth:AngularFireAuth) { }
 
 
-  signUp(user: any):firebase.Promise<any> {
+  signUp(user: any):Promise<any>{
     return this.afAuth.auth.createUserWithEmailAndPassword(user.username,user.password)
   }
 
-  login(user):firebase.Promise<any>  {
+  login(user):Promise<any>  {
     return this.afAuth.auth.signInWithEmailAndPassword(user.user_id,user.password)
   }
 
-  logout():firebase.Promise<any>{
+  logout():Promise<any>{
     return this.afAuth.auth.signOut()
   }
 
