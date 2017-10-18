@@ -1,0 +1,8 @@
+{
+  "name": "Doctor App Firebase",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
