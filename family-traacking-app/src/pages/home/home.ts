@@ -30,7 +30,6 @@ export class HomePage {
   rootPage = GroupsPage;
 
   logout() {
-    this.showLoading();
     this.auth.logout().then(() => {
       localStorage.removeItem('uid');
     }, (err) => {
