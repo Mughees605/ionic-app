@@ -15,6 +15,7 @@ import { NewgroupsPage } from '../pages/newgroups/newgroups';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Auth } from '../providers/auth/auth.service';
+import { GroupService } from '../providers/groups/groups.service';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 import { enviroment } from '../enviroments/enviroments';
@@ -57,6 +58,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Auth,
+    GroupService,
     NativeStorage
   ]
 })
