@@ -2,6 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { MenuController, Nav, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth/auth.service';
 import { DashboardPage } from '../dashboard/dashboard';
+import { GroupsPage } from '../groups/groups';
+
 
 @Component({
   selector: 'page-home',
@@ -20,10 +22,12 @@ export class HomePage {
   ) {
 
     this.pages = [
-      { title: 'Patient List', component: DashboardPage }
+      { title: 'Dashboard', component: DashboardPage },
+      { title: 'Groups List', component: GroupsPage }
+      
     ];
   }
-  rootPage = DashboardPage;
+  rootPage = GroupsPage;
 
   logout() {
     this.showLoading();

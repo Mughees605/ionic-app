@@ -8,6 +8,9 @@ import { LoginPage } from '../pages/login/login';
 import { RegistrationPage } from '../pages/registration/registration';
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { GroupsPage } from '../pages/groups/groups';
+import { NewgroupsPage } from '../pages/newgroups/newgroups';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,9 +27,11 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
   declarations: [
     MyApp,
     LoginPage,
+    GroupsPage,
     RegistrationPage,
     HomePage,
     DashboardPage,
+    NewgroupsPage
   ],
   imports: [
     BrowserModule,
@@ -42,8 +47,10 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     MyApp,
     HomePage,
     LoginPage,
+    NewgroupsPage,
     RegistrationPage,
     DashboardPage,
+    GroupsPage
   ],
   providers: [
     StatusBar,
