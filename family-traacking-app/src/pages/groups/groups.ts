@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, Events, LoadingController } from 'ionic-angular';
 import { NewgroupsPage } from '../newgroups/newgroups';
+import { GroupPage } from '../group/group';
 import { GroupService  } from '../../providers/groups/groups.service';
 @Component({
   selector: 'page-groups',
@@ -34,5 +35,10 @@ export class GroupsPage implements OnInit{
   addGroup(){
     this.navCtrl.push(NewgroupsPage);
   }
+  
+  openGroup(group) {
+    this.groupService.getintogroup(group.groupName);
+    this.navCtrl.push(GroupPage, { groupName: group.groupName });
 
+  }
 }

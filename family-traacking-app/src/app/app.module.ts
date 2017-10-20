@@ -9,6 +9,7 @@ import { RegistrationPage } from '../pages/registration/registration';
 import { HomePage } from '../pages/home/home';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { GroupsPage } from '../pages/groups/groups';
+import { GroupPage } from '../pages/group/group';
 import { NewgroupsPage } from '../pages/newgroups/newgroups';
 
 
@@ -32,6 +33,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     RegistrationPage,
     HomePage,
     DashboardPage,
+    GroupPage,
     NewgroupsPage
   ],
   imports: [
@@ -46,6 +48,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    GroupPage,
     HomePage,
     LoginPage,
     NewgroupsPage,
