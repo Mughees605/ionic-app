@@ -12,7 +12,9 @@ export class MembersPage {
   temparr = [];
   newrequest = {} as connreq;  
   filteredusers = [];
+  groupName:string;
   constructor(public reqService:RequestProvider, public alertCtrl:AlertController, public navCtrl: NavController, public navParams: NavParams, public userService: UsersProvider) {
+    this.groupName = this.navParams.get('groupName');
     this.userService.getallusers().then((res: any) => {
       this.filteredusers = res;
       this.temparr = res;
@@ -38,6 +40,7 @@ export class MembersPage {
   sendreq(recipient) {
     this.newrequest.sender = localStorage.getItem('uid');
     this.newrequest.recipient = recipient.uid;
+    this.newrequest.groupName = this.groupName;
     if (this.newrequest.sender === this.newrequest.recipient)
       alert('You are your friend always');
     else {

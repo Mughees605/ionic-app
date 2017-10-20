@@ -36,7 +36,7 @@ export class GroupPage {
           text: 'Add member',
           icon: 'person-add',
           handler: () => {
-            this.navCtrl.push(MembersPage);
+            this.navCtrl.push(MembersPage, {groupName:this.groupName});
           }
         },
         {
