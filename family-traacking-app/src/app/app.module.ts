@@ -26,6 +26,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { UsersProvider } from '../providers/users/users';
+import { RequestProvider } from '../providers/request/request';
 /*firebaser credentials*/
 /**/
 @NgModule({
@@ -68,7 +69,8 @@ import { UsersProvider } from '../providers/users/users';
     Auth,
     GroupService,
     NativeStorage,
-    UsersProvider
+    UsersProvider,
+    RequestProvider
   ]
 })
 export class AppModule { }
