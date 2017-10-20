@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, LoadingController, Content, Events } from 'ionic-angular';
 import { GroupService } from '../../providers/groups/groups.service';
+import { MembersPage } from '../members/members';
 
 @Component({
   selector: 'page-group',
@@ -35,7 +36,7 @@ export class GroupPage {
           text: 'Add member',
           icon: 'person-add',
           handler: () => {
-            this.navCtrl.push('GroupbuddiesPage');
+            this.navCtrl.push(MembersPage);
           }
         },
         {

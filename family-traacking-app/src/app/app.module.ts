@@ -11,6 +11,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { GroupsPage } from '../pages/groups/groups';
 import { GroupPage } from '../pages/group/group';
 import { NewgroupsPage } from '../pages/newgroups/newgroups';
+import { MembersPage } from '../pages/members/members';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,6 +25,7 @@ import { enviroment } from '../enviroments/enviroments';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { UsersProvider } from '../providers/users/users';
 /*firebaser credentials*/
 /**/
 @NgModule({
@@ -34,7 +37,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     HomePage,
     DashboardPage,
     GroupPage,
-    NewgroupsPage
+    NewgroupsPage,
+    MembersPage
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     NewgroupsPage,
     RegistrationPage,
     DashboardPage,
+    MembersPage,
     GroupsPage
   ],
   providers: [
@@ -62,7 +67,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Auth,
     GroupService,
-    NativeStorage
+    NativeStorage,
+    UsersProvider
   ]
 })
 export class AppModule { }
