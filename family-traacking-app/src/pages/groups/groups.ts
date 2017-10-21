@@ -34,8 +34,9 @@ export class GroupsPage implements OnInit{
   }
   
   openGroup(group) {
-    this.groupService.getintogroup(group.groupName);
-    this.navCtrl.push(GroupPage, { groupName: group.groupName });
+    console.log(group)
+    this.groupService.getintogroup(group.groupid);
+    this.navCtrl.push(GroupPage, { group: group });
 
   }
 }

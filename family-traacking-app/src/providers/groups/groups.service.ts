@@ -13,6 +13,7 @@ export class GroupService {
   myGroups: Array<any> = [];
   currentgroup: Array<any> = [];
   currentgroupname;
+  currentgroupid:string;
 
   constructor(public events: Events, public userSer: UsersProvider) {
 
@@ -55,6 +56,7 @@ export class GroupService {
             this.firegroup.child(user).child(gid).set({
               groupimage:data.groupimage,
               owner: data.owner,
+              groupname:data.groupname,
               msgboard: ''
             })
            })
@@ -72,10 +74,13 @@ export class GroupService {
       this.myGroups = [];
       if (snapshot.val() != null) {
         var temp = snapshot.val();
+        console.log(temp,"temp")
         for (var key in temp) {
           var newgroup = {
-            groupName: key,
-            groupimage: temp[key].groupimage
+            groupName: temp[key].groupname,
+            groupimage: temp[key].groupimage,
+            owner: temp[key].owner,
+            groupid: key
           }
           this.myGroups.push(newgroup);
         }
@@ -102,15 +107,21 @@ export class GroupService {
     return promise;
   }
 
-  getintogroup(groupname) {
-    if (groupname != null) {
-      this.firegroup.child(firebase.auth().currentUser.uid).child(groupname).once('value', (snapshot) => {
+  getintogroup(groupId) {
+    console.log(groupId)
+    if (groupId != null) {
+      this.firegroup.child(firebase.auth().currentUser.uid).child(groupId).once('value', (snapshot) => {
         if (snapshot.val() != null) {
+          console.log(snapshot.val())
           var temp = snapshot.val().members;
+          console.log(temp,"fsddddddddddd")
+          var groupname = snapshot.val().groupname;
+          var owner = snapshot.val().owner
           this.currentgroup = [];
           for (var key in temp) {
             this.currentgroup.push(temp[key]);
           }
+          this.currentgroupid = groupId;
           this.currentgroupname = groupname;
           this.events.publish('gotintogroup');
         }
@@ -129,6 +140,19 @@ export class GroupService {
       })
       this.getintogroup(this.currentgroupname);
     })
+  }
+
+  getgroupmembers() {
+    this.firegroup.child(firebase.auth().currentUser.uid).child(this.currentgroupid).once('value', (snapshot) => {
+      var tempdata = snapshot.val().owner;
+      this.firegroup.child(tempdata).child(this.currentgroupid).child('members').once('value', (snapshot) => {
+        var tempvar = snapshot.val();
+        for (var key in tempvar) {
+          this.currentgroup.push(tempvar[key]);
+        }
+      })
+    })
+    this.events.publish('gotmembers');
   }
 
 }

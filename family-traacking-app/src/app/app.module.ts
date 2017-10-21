@@ -12,7 +12,7 @@ import { GroupsPage } from '../pages/groups/groups';
 import { GroupPage } from '../pages/group/group';
 import { NewgroupsPage } from '../pages/newgroups/newgroups';
 import { MembersPage } from '../pages/members/members';
-
+import { GroupinfoPage } from '../pages/groupinfo/groupinfo';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -33,6 +33,7 @@ import { RequestProvider } from '../providers/request/request';
   declarations: [
     MyApp,
     LoginPage,
+    GroupinfoPage,
     GroupsPage,
     RegistrationPage,
     HomePage,
@@ -55,6 +56,7 @@ import { RequestProvider } from '../providers/request/request';
     MyApp,
     GroupPage,
     HomePage,
+    GroupinfoPage,
     LoginPage,
     NewgroupsPage,
     RegistrationPage,
