@@ -10,16 +10,16 @@
 
 
 <ion-content padding>
-  <ion-list no-lines>
-    <ion-list-header>
-      Requests
+  <ion-list>
+    <!-- <ion-list-header>
+     GroupRequest
     </ion-list-header>
     <ion-item-sliding *ngFor="let item of myrequests">
       <ion-item>
         <ion-avatar item-left>
-          <img src="{{item.photoURL}}">
+          <img src="{{item.groupimage}}">
         </ion-avatar>
-        <h4>{{item.displayName}}</h4>
+        <h4>{{item.groupname}}</h4>
       </ion-item>
       <ion-item-options>
         <button ion-button color="secondary" (click)="accept(item)">
@@ -31,6 +31,8 @@
           NOPE
         </button>
       </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-sliding> -->
+    <ion-input [(ngModel)]='input' placeholder='wirte joint group'></ion-input>
+    <button ion-button (click)='joinGroup()'>Join Group</button>
   </ion-list>
 </ion-content>

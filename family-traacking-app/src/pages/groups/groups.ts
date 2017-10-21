@@ -29,9 +29,6 @@ export class GroupsPage implements OnInit{
     
   }
 
-  ionViewDidLeave() {
-    this.events.unsubscribe('newgroup');
-  }
   addGroup(){
     this.navCtrl.push(NewgroupsPage);
   }

@@ -19,6 +19,9 @@ export class NewgroupsPage {
   }
 
   creategroup() {
+    let groupId = this.makeid();
+    this.newgroup['groupId'] = groupId; 
+    alert('groupId is '+ groupId);
     this.groupservice.addgroup(this.newgroup).then(() => {
       this.navCtrl.pop();
     }).catch((err) => {
@@ -26,8 +29,16 @@ export class NewgroupsPage {
     })
   }
 
+  makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
   
+    return text;
+  }
+    
   editgroupname() {
     let alert = this.alertCtrl.create({
       title: 'Edit Group Name',
