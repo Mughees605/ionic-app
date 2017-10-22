@@ -1,7 +1,7 @@
-import { Injectable, NgZone } from '@angular/core';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { Injectable } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 import 'rxjs/add/operator/filter';
+import { Observable } from 'rxjs';
 import firebase from 'firebase';
 @Injectable()
 export class LocationTracker {
@@ -10,68 +10,12 @@ export class LocationTracker {
   public lat: number = 0;
   public lng: number = 0;
 
-  constructor(public zone: NgZone, public backgroundGeolocation: BackgroundGeolocation, public geolocation: Geolocation) {
+  constructor( public geoLoc: Geolocation) {
 
   }
-
-  startTracking() {
-    let config = {
-      desiredAccuracy: 0,
-      stationaryRadius: 20,
-      distanceFilter: 10,
-      debug: true,
-      interval: 2000
-    };
-
-    this.backgroundGeolocation.configure(config).subscribe((location) => {
-
-      console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
-
-      // Run update inside of Angular's zone
-      this.zone.run(() => {
-        this.lat = location.latitude;
-        this.lng = location.longitude;
-      });
-
-    }, (err) => {
-
-      console.log(err);
-
-    });
-
-    // Turn ON the background-geolocation system.
-    this.backgroundGeolocation.start();
-
-
-    // Foreground Tracking
-
-    let options = {
-      frequency: 3000,
-      enableHighAccuracy: true
-    };
-
-    this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
-
-      console.log(position);
-
-      // Run update inside of Angular's zone
-      this.zone.run(() => {
-        this.lat = position.coords.latitude;
-        this.lng = position.coords.longitude;
-      });
-    })
+  
+  currentPosition(): Observable<any> {
+    return this.geoLoc.watchPosition()
   }
-
-  stopTracking() {
-    
-     console.log('stopTracking');
-    
-     this.backgroundGeolocation.finish();
-     this.watch.unsubscribe();
-    
-   }
-
-   setLatLong(){
-     firebase.database().ref()
-   }
+  
 }

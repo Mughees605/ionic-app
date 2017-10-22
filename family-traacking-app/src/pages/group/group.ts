@@ -43,20 +43,6 @@ export class GroupPage {
     this.events.subscribe('gotmembers', () => {
       this.groupmembers = this.groupservice.currentgroup;
     })
-
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data)=>{
-      console.log(data,"groupp ");
-    },(err)=>{
-      console.log(err)
-    })
-
-    this.geolocation.getCurrentPosition().then((res)=>{
-      console.log(res)
-    },(err)=>{
-      console.log(err)
-    })
-
     this.loadMap()
 
   }

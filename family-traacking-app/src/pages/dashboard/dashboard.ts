@@ -39,6 +39,10 @@ export class DashboardPage {
       this.myrequests = [];
       this.myrequests = this.reqService.allGroupsRequest;
     })
+
+    this.locationTracker.currentPosition().subscribe((res)=>{
+      console.log(res);
+    })
   }
 
   ionViewDidLeave() {

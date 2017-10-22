@@ -27,7 +27,6 @@ export class GroupsPage implements OnInit{
     })
   }
   ionViewWillEnter() {
-    this.start();
     console.log(this.locationTracker.lat)
   }
 
@@ -40,13 +39,5 @@ export class GroupsPage implements OnInit{
     this.groupService.getintogroup(group.groupid);
     this.navCtrl.push(GroupPage, { group: group });
 
-  }
-
-  start(){
-    this.locationTracker.startTracking();
-  }
-
-  stop(){
-    this.locationTracker.stopTracking();
   }
 }
