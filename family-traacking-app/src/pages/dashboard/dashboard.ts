@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { RequestProvider } from '../../providers/request/request';
 import { GroupService } from '../../providers/groups/groups.service';
 import { GroupsPage } from "../groups/groups";
+import { LocationTracker } from '../../providers/location/location';
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
@@ -22,6 +23,7 @@ export class DashboardPage {
     private afAuth: AngularFireAuth,
     public reqService: RequestProvider,
     public groupService: GroupService,
+    public locationTracker:LocationTracker,
     private alertCtrl: AlertController) {
 
   }
@@ -61,6 +63,4 @@ export class DashboardPage {
     });
 
   }
-
-
 }

@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar color="hcolor">
-        <ion-title>{{groupName}}</ion-title>
+        <ion-title>{{groupName}} (<span *ngIf='groupmembers && groupmembers.length > 0'>{{groupmembers.length}}</span>)</ion-title>
         <ion-buttons end>
           <button *ngIf="owner" ion-button icon-only (click)="presentOwnerSheet()">
             <ion-icon name="menu"></ion-icon>
@@ -22,5 +22,5 @@
 
 
 <ion-content padding>
-
+ <div id="map"></div>
 </ion-content>

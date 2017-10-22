@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, LoadingController, Content, Events } from 'ionic-angular';
 import { GroupService } from '../../providers/groups/groups.service';
 import { MembersPage } from '../members/members';
 import { GroupinfoPage } from '../groupinfo/groupinfo'; 
-
+import { Geolocation } from '@ionic-native/geolocation';
+declare var google:any
 @Component({
   selector: 'page-group',
   templateUrl: 'group.html',
 })
 export class GroupPage {
-
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
   owner: boolean = false;
   uid: string;
   group;
   groupId;
   groupName;
   groupmembers;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
+  constructor(public geolocation:Geolocation, public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
     public actionSheet: ActionSheetController, public events: Events, public loadingCtrl: LoadingController) {
 
     this.group = this.navParams.get('group');
@@ -29,9 +31,7 @@ export class GroupPage {
       if (res)
        {
         this.owner = true;
-        this.groupmembers = this.groupservice.currentgroup;
-      console.log(this.groupmembers)
-      
+        this.groupmembers = this.groupservice.currentgroup;      
        }
         else{
           this.groupservice.getgroupmembers();
@@ -43,6 +43,21 @@ export class GroupPage {
     this.events.subscribe('gotmembers', () => {
       this.groupmembers = this.groupservice.currentgroup;
     })
+
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((data)=>{
+      console.log(data,"groupp ");
+    },(err)=>{
+      console.log(err)
+    })
+
+    this.geolocation.getCurrentPosition().then((res)=>{
+      console.log(res)
+    },(err)=>{
+      console.log(err)
+    })
+
+    this.loadMap()
 
   }
 
@@ -129,4 +144,18 @@ export class GroupPage {
     })
     sheet.present();
   }
+
+  loadMap(){
+    
+       let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    
+       let mapOptions = {
+         center: latLng,
+         zoom: 15,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+       }
+    
+       this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    
+     }
 }

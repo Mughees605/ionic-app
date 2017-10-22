@@ -27,6 +27,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { UsersProvider } from '../providers/users/users';
 import { RequestProvider } from '../providers/request/request';
+
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationTracker } from '../providers/location/location';
 /*firebaser credentials*/
 /**/
 @NgModule({
@@ -46,7 +50,7 @@ import { RequestProvider } from '../providers/request/request';
     BrowserModule,
     HttpModule,
     FormsModule,
-    AngularFireModule.initializeApp(enviroment.firebase,),
+    AngularFireModule.initializeApp(enviroment.firebase, ),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp),
@@ -72,7 +76,10 @@ import { RequestProvider } from '../providers/request/request';
     GroupService,
     NativeStorage,
     UsersProvider,
-    RequestProvider
+    RequestProvider,
+    BackgroundGeolocation,
+    Geolocation,
+    LocationTracker
   ]
 })
 export class AppModule { }
