@@ -129,7 +129,7 @@ export class GroupPage {
           text: 'Group Info',
           icon: 'person',
           handler: () => {
-            this.navCtrl.push('GroupinfoPage', {groupName: this.groupName});
+            this.navCtrl.push(GroupinfoPage, {groupName: this.groupName});
           }
         },
         {
