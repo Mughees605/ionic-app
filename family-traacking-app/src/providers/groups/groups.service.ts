@@ -45,15 +45,15 @@ export class GroupService {
     return new Promise((resolve, reject) => {
       firebase.database().ref('allGroups').child(gid).on('value', (snapshot) => {
         let data = snapshot.val();
-        console.log(data);
         this.userSer.getuserdetails().then((res: any) => {
-          let user = res.uid;
-          if (data.owner === user) {
+          let uid = res.uid;
+          if (data.owner === uid) {
             alert("you are owner of this group")
           }
           else {
-           this.firegroup.child(data.owner).child(gid).child('members').push(res).then(()=>{
-            this.firegroup.child(user).child(gid).set({
+           this.firegroup.child(data.owner).child(gid).child('members').push(uid).then(()=>{
+
+            this.firegroup.child(uid).child(gid).set({
               groupimage:data.groupimage,
               owner: data.owner,
               groupname:data.groupname,
@@ -74,7 +74,6 @@ export class GroupService {
       this.myGroups = [];
       if (snapshot.val() != null) {
         var temp = snapshot.val();
-        console.log(temp,"temp")
         for (var key in temp) {
           var newgroup = {
             groupName: temp[key].groupname,
@@ -85,7 +84,7 @@ export class GroupService {
           this.myGroups.push(newgroup);
         }
       }
-      this.events.publish('newgroup');
+      this.events.publish('allmygroups');
     })
 
   }
@@ -107,6 +106,7 @@ export class GroupService {
     return promise;
   }
 
+  // for admin
   getintogroup(groupId) {
     console.log(groupId)
     if (groupId != null) {
@@ -114,7 +114,6 @@ export class GroupService {
         if (snapshot.val() != null) {
           console.log(snapshot.val())
           var temp = snapshot.val().members;
-          console.log(temp,"fsddddddddddd")
           var groupname = snapshot.val().groupname;
           var owner = snapshot.val().owner
           this.currentgroup = [];
@@ -128,28 +127,28 @@ export class GroupService {
       })
     }
   }
-
-  acceptrequest(newmember) {
-    this.firegroup.child(firebase.auth().currentUser.uid).child(this.currentgroupname).child('members').push(newmember).then(() => {
-      this.firegroup.child(newmember.uid).child(this.currentgroupname).set({
-        groupimage: "",
-        owner: firebase.auth().currentUser.uid,
-        msgboard: ''
-      }).catch((err) => {
-        console.log(err);
-      })
-      this.getintogroup(this.currentgroupname);
-    })
-  }
-
+ // for members
   getgroupmembers() {
+    let userUidArr = [];
+
     this.firegroup.child(firebase.auth().currentUser.uid).child(this.currentgroupid).once('value', (snapshot) => {
       var tempdata = snapshot.val().owner;
       this.firegroup.child(tempdata).child(this.currentgroupid).child('members').once('value', (snapshot) => {
         var tempvar = snapshot.val();
         for (var key in tempvar) {
-          this.currentgroup.push(tempvar[key]);
+          let uid = tempvar[key];
+          userUidArr.push(tempvar[key]);
         }
+      }).then(()=>{
+        userUidArr.map((uid,i)=>{
+          console.log(uid);
+          firebase.database().ref('/users').child(uid).once('value',(snapshot)=>{
+            let userdata =snapshot.val();
+            this.currentgroup.push(userdata);
+          })
+        })
+      }).catch((err)=>{
+        alert(err)
       })
     })
     this.events.publish('gotmembers');

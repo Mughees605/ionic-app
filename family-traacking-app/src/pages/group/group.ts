@@ -3,7 +3,7 @@ import { NavController, NavParams, ActionSheetController, LoadingController, Con
 import { GroupService } from '../../providers/groups/groups.service';
 import { MembersPage } from '../members/members';
 import { GroupinfoPage } from '../groupinfo/groupinfo'; 
-import { Geolocation } from '@ionic-native/geolocation';
+import { LocationTracker } from '../../providers/location/location';
 declare var google:any
 @Component({
   selector: 'page-group',
@@ -18,7 +18,9 @@ export class GroupPage {
   groupId;
   groupName;
   groupmembers;
-  constructor(public geolocation:Geolocation, public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
+  latitude;
+  longitude;
+  constructor(public locationTracker:LocationTracker, public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
     public actionSheet: ActionSheetController, public events: Events, public loadingCtrl: LoadingController) {
 
     this.group = this.navParams.get('group');
@@ -44,7 +46,11 @@ export class GroupPage {
       this.groupmembers = this.groupservice.currentgroup;
     })
     this.loadMap()
-
+    
+    this.locationTracker.currentPosition().subscribe((res)=>{
+      this.latitude = res['coords']['latitude'];
+      this.longitude = res['coords']['longitude'];
+    })
   }
 
   presentOwnerSheet() {
@@ -52,36 +58,11 @@ export class GroupPage {
       title: 'Group Actions',
       buttons: [
         {
-          text: 'Add member',
-          icon: 'person-add',
-          handler: () => {
-            this.navCtrl.push(MembersPage, {groupName:this.groupName});
-          }
-        },
-        {
-          text: 'Remove member',
-          icon: 'remove-circle',
-          handler: () => {
-            this.navCtrl.push('GroupmembersPage');
-          }
-        },
-        {
           text: 'Group Info',
           icon: 'person',
           handler: () => {
             this.navCtrl.push(GroupinfoPage, { group:this.group});
           }
-        },
-        {
-          text: 'Delete Group',
-          icon: 'trash',
-          // handler: () => {
-          //   this.groupservice.deletegroup().then(() => {
-          //     this.navCtrl.pop();
-          //   }).catch((err) => {
-          //     console.log(err);
-          //   })
-          // }
         },
         {
           text: 'Cancel',
@@ -101,21 +82,10 @@ export class GroupPage {
       title: 'Group Actions',
       buttons: [
         {
-          text: 'Leave Group',
-          icon: 'log-out',
-          // handler: () => {
-          //   this.groupservice.leavegroup().then(() => {
-          //     this.navCtrl.pop();
-          //   }).catch((err) => {
-          //     console.log(err);
-          //   })
-          // }
-        },
-        {
           text: 'Group Info',
           icon: 'person',
           handler: () => {
-            this.navCtrl.push(GroupinfoPage, {groupName: this.groupName});
+            this.navCtrl.push(GroupinfoPage, {group: this.group});
           }
         },
         {

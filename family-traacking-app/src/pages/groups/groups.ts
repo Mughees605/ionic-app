@@ -3,14 +3,13 @@ import { NavController, NavParams, Events, LoadingController } from 'ionic-angul
 import { NewgroupsPage } from '../newgroups/newgroups';
 import { GroupPage } from '../group/group';
 import { GroupService  } from '../../providers/groups/groups.service';
-import { LocationTracker } from '../../providers/location/location';
 @Component({
   selector: 'page-groups',
   templateUrl: 'groups.html',
 })
 export class GroupsPage implements OnInit{
 
-  constructor(public locationTracker:LocationTracker, public navCtrl: NavController, public navParams: NavParams, public events: Events,
+  constructor( public navCtrl: NavController, public navParams: NavParams, public events: Events,
     public loadingCtrl: LoadingController, public groupService:GroupService) {
   }
   allMyGroups = []
@@ -22,12 +21,9 @@ export class GroupsPage implements OnInit{
     loader.present();
     this.groupService.getmygroups();
     loader.dismiss();
-    this.events.subscribe('newgroup', () => {
+    this.events.subscribe('allmygroups', () => {
       this.allMyGroups = this.groupService.myGroups;
     })
-  }
-  ionViewWillEnter() {
-    console.log(this.locationTracker.lat)
   }
 
   addGroup(){
@@ -35,7 +31,6 @@ export class GroupsPage implements OnInit{
   }
   
   openGroup(group) {
-    console.log(group)
     this.groupService.getintogroup(group.groupid);
     this.navCtrl.push(GroupPage, { group: group });
 

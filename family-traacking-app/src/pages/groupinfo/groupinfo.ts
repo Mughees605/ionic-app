@@ -8,7 +8,7 @@ import { GroupService } from '../../providers/groups/groups.service';
 export class GroupinfoPage {
   groupId;
   groupName;
-  groupmembers;
+  groupmembers = [];
   group;
   owner:Boolean;
   constructor(public navCtrl: NavController, public events:Events, public navParams: NavParams, public groupservice:GroupService) {
@@ -22,6 +22,7 @@ export class GroupinfoPage {
       if (res)
        {
         this.owner = true;
+        console.log(this.groupmembers,"if")
         this.groupmembers = this.groupservice.currentgroup;      
        }
         else{
@@ -32,7 +33,9 @@ export class GroupinfoPage {
     })
 
     this.events.subscribe('gotmembers', () => {
+      this.groupmembers = [];
       this.groupmembers = this.groupservice.currentgroup;
+      console.log(this.groupmembers,"else")
     })
 
   }
