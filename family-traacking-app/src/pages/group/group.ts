@@ -4,6 +4,7 @@ import { GroupService } from '../../providers/groups/groups.service';
 import { MembersPage } from '../members/members';
 import { GroupinfoPage } from '../groupinfo/groupinfo'; 
 import { LocationTracker } from '../../providers/location/location';
+import { UsersProvider } from '../../providers/users/users';
 declare var google:any
 @Component({
   selector: 'page-group',
@@ -20,7 +21,7 @@ export class GroupPage {
   groupmembers;
   latitude;
   longitude;
-  constructor(public locationTracker:LocationTracker, public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
+  constructor(public userSer:UsersProvider, public locationTracker:LocationTracker, public navCtrl: NavController, public navParams: NavParams, public groupservice: GroupService,
     public actionSheet: ActionSheetController, public events: Events, public loadingCtrl: LoadingController) {
 
     this.group = this.navParams.get('group');
@@ -46,11 +47,8 @@ export class GroupPage {
       this.groupmembers = this.groupservice.currentgroup;
     })
     this.loadMap()
-    
-    this.locationTracker.currentPosition().subscribe((res)=>{
-      this.latitude = res['coords']['latitude'];
-      this.longitude = res['coords']['longitude'];
-    })
+    this.userSer.updateUser();
+
   }
 
   presentOwnerSheet() {

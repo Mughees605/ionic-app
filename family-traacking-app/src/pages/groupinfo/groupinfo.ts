@@ -18,25 +18,8 @@ export class GroupinfoPage {
   }
 
   ionViewDidLoad() {
-    this.groupservice.getownership(this.groupId).then((res) => {
-      if (res)
-       {
-        this.owner = true;
-        console.log(this.groupmembers,"if")
-        this.groupmembers = this.groupservice.currentgroup;      
-       }
-        else{
-          this.groupservice.getgroupmembers();
-        }
-    }).catch((err) => {
-      alert(err);
-    })
 
-    this.events.subscribe('gotmembers', () => {
-      this.groupmembers = [];
-      this.groupmembers = this.groupservice.currentgroup;
-      console.log(this.groupmembers,"else")
-    })
+    this.groupmembers = this.groupservice.currentgroup;
 
   }
 

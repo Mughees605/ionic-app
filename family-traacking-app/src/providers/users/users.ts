@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import firebase from "firebase";
+import { LocationTracker } from '../location/location';
 
 @Injectable()
 export class UsersProvider {
   firedata = firebase.database().ref('/users');
-  
-  constructor(public http: Http) {
+  latitude;
+  longitude;
+  constructor(public http: Http, public locationTracker:LocationTracker) {
     console.log('Hello UsersProvider Provider');
   }
 
@@ -37,5 +39,17 @@ export class UsersProvider {
       })
     })
     return promise;
+  }
+
+  updateUser(){
+    let uid = localStorage.getItem("uid");
+    this.locationTracker.currentPosition().subscribe((res)=>{
+      this.latitude = res['coords']['latitude'];
+      this.longitude = res['coords']['longitude'];
+      this.firedata.child(uid).update({
+        latitude:this.latitude,
+        longitude:this.longitude
+      })
+    })
   }
 }
