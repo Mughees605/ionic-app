@@ -13,7 +13,7 @@ export class GroupService {
   myGroups: Array<any> = [];
   currentgroup: Array<any> = [];
   currentgroupname;
-  currentgroupid:string;
+  currentgroupid: string;
 
   constructor(public events: Events, public userSer: UsersProvider) {
 
@@ -51,17 +51,17 @@ export class GroupService {
             alert("you are owner of this group")
           }
           else {
-           this.firegroup.child(data.owner).child(gid).child('members').push(uid).then(()=>{
+            this.firegroup.child(data.owner).child(gid).child('members').push(uid).then(() => {
 
-            this.firegroup.child(uid).child(gid).set({
-              groupimage:data.groupimage,
-              owner: data.owner,
-              groupname:data.groupname,
-              msgboard: ''
+              this.firegroup.child(uid).child(gid).set({
+                groupimage: data.groupimage,
+                owner: data.owner,
+                groupname: data.groupname,
+                msgboard: ''
+              })
             })
-           })
           }
-        }).catch((err)=>{
+        }).catch((err) => {
           reject(err);
         })
       })
@@ -127,31 +127,34 @@ export class GroupService {
       })
     }
   }
- // for members
+  // for members
   getgroupmembers() {
     let userUidArr = [];
-
+    let owner;
     this.firegroup.child(firebase.auth().currentUser.uid).child(this.currentgroupid).once('value', (snapshot) => {
-      var tempdata = snapshot.val().owner;
-      this.firegroup.child(tempdata).child(this.currentgroupid).child('members').once('value', (snapshot) => {
+      owner = snapshot.val().owner;
+    }).then(() => {
+      this.firegroup.child(owner).child(this.currentgroupid).child('members').once('value', (snapshot) => {
         var tempvar = snapshot.val();
         for (var key in tempvar) {
           let uid = tempvar[key];
           userUidArr.push(tempvar[key]);
         }
-      }).then(()=>{
-        userUidArr.map((uid,i)=>{
+      })
+    })
+      .then(() => {
+        userUidArr.map((uid, i) => {
           console.log(uid);
-          firebase.database().ref('/users').child(uid).once('value',(snapshot)=>{
-            let userdata =snapshot.val();
+          firebase.database().ref('/users').child(uid).once('value', (snapshot) => {
+            let userdata = snapshot.val();
             this.currentgroup.push(userdata);
           })
         })
-      }).catch((err)=>{
-        alert(err)
       })
-    })
-    this.events.publish('gotmembers');
+      .then(()=>{
+        this.events.publish("gotmembers")
+      })
   }
 
 }
+

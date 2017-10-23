@@ -9,7 +9,7 @@ export class UsersProvider {
   firedata = firebase.database().ref('/users');
   latitude;
   longitude;
-  constructor(public http: Http, public locationTracker:LocationTracker) {
+  constructor(public http: Http, public locationTracker: LocationTracker) {
     console.log('Hello UsersProvider Provider');
   }
 
@@ -28,28 +28,24 @@ export class UsersProvider {
     })
     return promise;
   }
-   
+
 
   getuserdetails() {
     var promise = new Promise((resolve, reject) => {
-    this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
-      resolve(snapshot.val());
-    }).catch((err) => {
-      reject(err);
+      this.firedata.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
+        resolve(snapshot.val());
+      }).catch((err) => {
+        reject(err);
       })
     })
     return promise;
   }
 
-  updateUser(){
+  updateUser(location) {
     let uid = localStorage.getItem("uid");
-    this.locationTracker.currentPosition().subscribe((res)=>{
-      this.latitude = res['coords']['latitude'];
-      this.longitude = res['coords']['longitude'];
-      this.firedata.child(uid).update({
-        latitude:this.latitude,
-        longitude:this.longitude
-      })
+    this.firedata.child(uid).update({
+      latitude: location.latitude,
+      longitude: location.longitude
     })
   }
 }
